@@ -1,0 +1,23 @@
+{% extends 'RExamMain/DefaultView.html' %}
+{% load static %}
+{% block title %}
+
+{% endblock title %}
+{% block body %}
+    <div class="container-fluid main">
+        <div class="col-10 offset-1">
+            {% include 'RExamMain/MenuView.html' %}
+        </div>
+        <div class="col-10 offset-1 content-block">
+            <div class="content" id="content">
+                Контент отсутствует!
+            </div>
+        </div>
+        <div class="col-10 offset-1 footer">
+            <div class="footer-content">Designed by DONit</div>
+        </div>
+    </div>
+{% endblock body %}
+{% block scripts %}
+    <script src="{% static 'RExamMain/MenuQuerys.js' %}"></script>
+{% endblock scripts %}

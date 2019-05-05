@@ -1,0 +1,67 @@
+{% extends 'RExamMain/DefaultView.html' %}
+{% load static %}
+{% load recaptcha2 %}
+{% block head %}
+    <link rel="stylesheet" href="{% static 'RExamAccounts/style.css' %}">
+    {% recaptcha_init %}
+{% endblock head %}
+{% block title %} RExam -> Авторизация {% endblock title %}
+{% block body %}
+    <div class="container ContentBlock col-lg-4 offset-lg-4 col-md-6 offset-md-3 col-sm-9 col-12">
+        <div class="Content">
+            <div class="header-h1">
+                <h1>Авторизация</h1>
+            </div>
+            <div class="RegBlock">
+                <form method="post">
+                    {% csrf_token %}
+                    {% if error %}
+                        <div class="alert alert-danger">
+                            {{ error }}
+                        </div>
+                    {% endif %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ form.username.label }}</span>
+                            </div>
+                            {{ form.username }}
+                            {% if form.username.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.username.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ form.password.label }}</span>
+                            </div>
+                            {{ form.password }}
+                            {% if form.password.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.password.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            {{ form.captcha }}
+                            {% if form.captcha.errors %}
+                                <div class="alert alert-danger">
+                                    Капча не пройдена!
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-12 text-center row">
+                        <button type="submit" class="btn btn-info col-5 offset-1">Войти</button>
+                        <a href="{% url 'RExamAccounts:SignUp' %}" class="btn btn-info col-5 offset-1">Регистрация</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock body %}
