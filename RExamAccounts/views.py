@@ -68,13 +68,16 @@ class Profile(View):
         return HttpResponseNotFound
 
     def post(self, request):
-        success = ''
-        error = ''
-        bound_form = ProfileEdit(request.POST, instance=request.user)
-        if bound_form.is_valid():
-            success = '<script type="text/javascript"> location.reload() </script> '
-            bound_form.save()
+        if request.is_ajax():
+            success = ''
+            error = ''
+            bound_form = ProfileEdit(request.POST, instance=request.user)
+            if bound_form.is_valid():
+                success = '<script type="text/javascript"> location.reload() </script> '
+                bound_form.save()
+            else:
+                error = '<div class="alert alert-danger">Произошла ошибка в обработке формы!</div>'
+            return render(request, 'RExamAccounts/ProfileView.html',
+                          context={'form': bound_form, 'user': request.user, 'success': success, 'error': error})
         else:
-            error = '<div class="alert alert-danger">Произошла ошибка в обработке формы!</div>'
-        return render(request, 'RExamAccounts/ProfileView.html',
-                      context={'form': bound_form, 'user': request.user, 'success': success, 'error': error})
+            return HttpResponseNotFound

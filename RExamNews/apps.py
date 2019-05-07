@@ -1,5 +1,6 @@
 from django.apps import AppConfig
 
 
-class RexamnewsConfig(AppConfig):
+class RExamNewsConfig(AppConfig):
     name = 'RExamNews'
+    verbose_name = u'RExam Новости'

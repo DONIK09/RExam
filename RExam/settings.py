@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'RExamAccounts.apps.RExamAccountsConfig',
     'RExamMain.apps.RExamMainConfig',
+    'RExamNews.apps.RExamNewsConfig',
     'fontawesome_5',
     'snowpenguin.django.recaptcha2'
 ]
