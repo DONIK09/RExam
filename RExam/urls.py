@@ -21,4 +21,5 @@ urlpatterns = [
     path('account/', include(('RExamAccounts.urls', 'RExamAccounts'), namespace='RExamAccounts')),
     path('rexam/', include('RExamMain.urls')),
     path('', include('RExamMain.urls')),
+    path('news/', include(('RExamNews.urls', 'RExamNews'), namespace='RExamNews')),
 ]

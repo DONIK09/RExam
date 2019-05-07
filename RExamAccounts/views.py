@@ -63,12 +63,18 @@ class Profile(View):
     def get(self, request):
         if request.is_ajax():
             form = ProfileEdit(instance=request.user)
-            return render(request, 'RExamAccounts/ProfileView.html', context={'form': form, 'user': request.user})
+            return render(request, 'RExamAccounts/ProfileView.html',
+                          context={'form': form, 'user': request.user, 'error': '', 'success': ''})
         return HttpResponseNotFound
 
     def post(self, request):
-        print(request.POST)
+        success = ''
+        error = ''
         bound_form = ProfileEdit(request.POST, instance=request.user)
         if bound_form.is_valid():
+            success = '<script type="text/javascript"> location.reload() </script> '
             bound_form.save()
-        return render(request, 'RExamAccounts/ProfileView.html', context={'form': bound_form, 'user': request.user})
+        else:
+            error = '<div class="alert alert-danger">Произошла ошибка в обработке формы!</div>'
+        return render(request, 'RExamAccounts/ProfileView.html',
+                      context={'form': bound_form, 'user': request.user, 'success': success, 'error': error})

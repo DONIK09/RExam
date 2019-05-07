@@ -7,11 +7,9 @@ $(document).ready(function () {
             data: $(this).serialize(),
             success: function (data) {
                 $('#content').html($(data).filter('#body')).fadeIn('slow');
-                alert('Данные успешно сохранены!');
-                location.reload();
             },
             error: function () {
-                alert('Ошибка');
+                alert('Ошибка запроса!');
             }
         })
     });
