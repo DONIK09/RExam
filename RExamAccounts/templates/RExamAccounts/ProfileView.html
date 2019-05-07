@@ -9,44 +9,23 @@
 {% endblock title %}
 {% block body %}
     <div id="body">
-        <form class="row" method="post">
-            {% csrf_token %}
+        <div class="row">
             <div class="LeftBlock col-lg-6 col-md-6 col-sm-12 col-12">
                 <div class="header">Профиль пользователя</div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">{{ form.username.label }}</span>
+                            <span class="input-group-text"><i class="far fa-user"></i></span>
                         </div>
-                        {{ form.username }}
-                        {% if form.username.errors %}
-                            <div class="alert alert-danger">
-                                {{ form.username.errors }}
-                            </div>
-                        {% endif %}
+                        <input class="form-control" value="{{ user.username }}" disabled>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">{{ form.email.label }}</span>
+                            <span class="input-group-text"><i class="far fa-envelope"></i></span>
                         </div>
-                        {{ form.email }}
-                        {% if form.email.errors %}
-                            <div class="alert alert-danger">
-                                {{ form.email.errors }}
-                            </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        {{ form.captcha }}
-                        {% if form.captcha.errors %}
-                            <div class="alert alert-danger">
-                                Капча не пройдена!
-                            </div>
-                        {% endif %}
+                        <input class="form-control" value="{{ user.email }}" disabled>
                     </div>
                 </div>
             </div>
@@ -55,54 +34,55 @@
                 <div class="form-group">
                     <div class="input-group">
                         <div class="input-group-prepend">
-                            <span class="input-group-text">{{ form.last_name.label }}</span>
+                            <span class="input-group-text"><i class="fas fa-users"></i></span>
                         </div>
-                        {{ form.last_name }}
-                        {% if form.last_name.errors %}
-                            <div class="alert alert-danger">
-                                {{ form.last_name.errors }}
+                        <input class="form-control" value="{{ user.study_group }}" disabled>
+                    </div>
+                </div>
+                <form action="{% url 'RExamAccounts:Profile' %}">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ form.last_name.label }}</span>
                             </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">{{ form.first_name.label }}</span>
+                            {{ form.last_name }}
+                            {% if form.last_name.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.last_name.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                        {{ form.first_name }}
-                        {% if form.first_name.errors %}
-                            <div class="alert alert-danger">
-                                {{ form.first_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ form.first_name.label }}</span>
                             </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">{{ form.middle_name.label }}</span>
+                            {{ form.first_name }}
+                            {% if form.first_name.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.first_name.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                        {{ form.middle_name }}
-                        {% if form.middle_name.errors %}
-                            <div class="alert alert-danger">
-                                {{ form.middle_name.errors }}
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">{{ form.middle_name.label }}</span>
                             </div>
-                        {% endif %}
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">{{ form.study_group.label }}</span>
+                            {{ form.middle_name }}
+                            {% if form.middle_name.errors %}
+                                <div class="alert alert-danger">
+                                    {{ form.middle_name.errors }}
+                                </div>
+                            {% endif %}
                         </div>
-                        {{ form.study_group }}
                     </div>
-                </div>
+                    <button type="submit" class="btn btn-info float-right">Сохранить</button>
+                </form>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-info float-right">Сохранить</button>
-            </div>
-        </form>
+        </div>
     </div>
 {% endblock body %}

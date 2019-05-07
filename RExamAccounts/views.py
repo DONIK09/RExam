@@ -63,5 +63,12 @@ class Profile(View):
     def get(self, request):
         if request.is_ajax():
             form = ProfileEdit(instance=request.user)
-            return render(request, 'RExamAccounts/ProfileView.html', context={'form': form})
+            return render(request, 'RExamAccounts/ProfileView.html', context={'form': form, 'user': request.user})
         return HttpResponseNotFound
+
+    def post(self, request):
+        print(request.POST)
+        bound_form = ProfileEdit(request.POST, instance=request.user)
+        if bound_form.is_valid():
+            bound_form.save()
+        return render(request, 'RExamAccounts/ProfileView.html', context={'form': bound_form, 'user': request.user})
