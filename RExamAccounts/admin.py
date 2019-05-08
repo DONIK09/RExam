@@ -3,7 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 from django.contrib.auth.forms import UserChangeForm
 from django.utils.translation import gettext_lazy as _
 
-from RExamAccounts.models import UserProfile
+from RExamAccounts.models import UserProfile, StudyGroup
 
 
 class UserProfileChangeForm(UserChangeForm):
@@ -32,3 +32,4 @@ class UserProfileAdmin(UserAdmin):
 
 # Перерегистрируем модель User
 admin.site.register(UserProfile, UserProfileAdmin)
+admin.site.register(StudyGroup)

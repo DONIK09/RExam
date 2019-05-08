@@ -12,6 +12,7 @@ class StudyGroup(models.Model):
 
     class Meta:
         verbose_name = u'Учебная группа'
+        verbose_name_plural = u'Учебные группы'
 
 
 class UserProfile(AbstractUser):
@@ -20,6 +21,9 @@ class UserProfile(AbstractUser):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email', 'last_name', 'first_name', 'middle_name', 'study_group']
+
+    def __str__(self):
+        return self.username
 
     class Meta:
         verbose_name = u'Пользователь'

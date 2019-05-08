@@ -1,8 +1,9 @@
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
-
 # Create your views here.
 from django.views import View
+
+from RExamNews.models import RExamNewsModel
 
 
 class MainPage(View):
@@ -14,5 +15,6 @@ class MainPage(View):
 class MainContent(View):
     def get(self, request):
         if request.is_ajax():
-            return render(request, 'RExamMain/MainView.html')
+            news = RExamNewsModel.objects.all()
+            return render(request, 'RExamMain/MainView.html', context={'news': news})
         return HttpResponseNotFound

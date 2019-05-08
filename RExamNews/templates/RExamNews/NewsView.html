@@ -1,0 +1,10 @@
+{% for new in news %}
+    <h2>{{ new.name }}</h2>
+    <hr>
+    <p>{{ new.content }}</p>
+    <hr>
+    <div class="row news-footer">
+        <p>{{ new.data }}</p>
+        <p>{{ new.type.icon| safe }}{{ new.type.name }}</p>
+    </div>
+{% endfor %}
