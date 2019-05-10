@@ -1,10 +1,42 @@
-{% for new in news %}
-    <h2>{{ new.name }}</h2>
-    <hr>
-    <p>{{ new.content }}</p>
-    <hr>
-    <div class="row news-footer">
-        <p>{{ new.data }}</p>
-        <p>{{ new.type.icon| safe }}{{ new.type.name }}</p>
+{% load static %}
+<div id="body">
+    <div class="container-fluid">
+        {% for new in news %}
+            <div class="new-block">
+                <div class="news-header">{{ new.name }}</div>
+                <div class="news-content">{{ new.content }}
+                    <div class="row news-footer">
+                        <div class="data mr-1"> Дата и время: {{ new.data }}</div>
+                        <div class="type mr-1">Тип: {{ new.type.name }} <span
+                                class="icon">{{ new.type.icon| safe }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        {% if news.paginator.num_pages > 1 %}
+        <div class="row col-12 justify-content-center">
+            <nav class="paginator" aria-label="Страницы новостей">
+                <ul class="pagination">
+                    {% if news.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="#news?page={{ news.previous_page_number }}">Предыдущая</a>
+                        </li>
+                    {% endif %}
+                    {% for page_num in news.paginator.page_range %}
+                        <li class="page-item {% if news.number == page_num %} active {% endif %}">
+                            <a class="page-link"
+                               href="#news?page={{ page_num }}">{{ page_num }}</a>
+                        </li>
+                    {% endfor %}
+                    {% if news.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="#news?page={{ news.next_page_number }}">Следующая</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+        {% endif %}
     </div>
-{% endfor %}
+</div>

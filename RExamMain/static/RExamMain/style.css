@@ -1,8 +1,11 @@
+html{
+    min-width:500px;
+}
 .menu {
     background: #0097a7;
     font-family: Roboto, sans-serif;
     border-radius: 3px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
 
 .main {
@@ -18,15 +21,15 @@
 .content {
     font-family: Roboto, sans-serif;
     background: whitesmoke;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    padding: .5rem 1rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+    padding: 1rem 1rem;
 }
 
 .footer-content {
     background: #0097a7;
     font-family: Roboto, sans-serif;
     border-radius: 3px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     color: white;
     padding: .5rem 1rem;
 }

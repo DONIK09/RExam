@@ -1,6 +1,6 @@
 $(window).bind('hashchange', function () {
     if (location.hash === '') {
-        location.hash = '/main';
+        location.hash = '/news';
         return true
     }
     let link = location.hash.replace('#', '');
@@ -19,7 +19,7 @@ $(document).ready(function () {
             document.title = $(data).filter('title').text();
         });
     } else {
-        location.hash = '/main';
+        location.hash = '/news';
     }
     $('a').on('click', function () {
         if ($(this).attr('noajax') === 'true') return true;
