@@ -54,17 +54,18 @@ class SignInForm(forms.Form):
 
 class ProfileEdit(UserChangeForm):
     password = None
+    captcha = ReCaptchaField(ReCaptchaWidget())
 
     class Meta:
         model = UserProfile
-        fields = ('email', 'first_name', 'last_name', 'middle_name', 'study_group', 'username')
+        fields = ('email', 'first_name', 'last_name', 'middle_name', 'study_group', 'username', 'captcha')
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя'}),
             'last_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Фамилия'}),
             'middle_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}),
             'study_group': Select(attrs={'class': 'form-control', 'placeholder': 'Группа'}),
             'email': EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-Mail'}),
-            'username': TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'})
+            'username': TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'}),
         }
         labels = {
             'first_name': Icon('address-card', 'far').as_html(),

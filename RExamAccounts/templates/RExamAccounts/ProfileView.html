@@ -1,17 +1,11 @@
-{% extends 'RExamMain/DefaultView.html' %}
-{% load static %}
-{% load fontawesome_5 %}
-{% block head %}
-    {% fontawesome_5_static %}
-{% endblock head %}
-{% block title %}
-    RExam -> Профиль
-{% endblock title %}
-{% block body %}
     <div id="body">
+        <script type="text/javascript">    $.getScript('https://google.com/recaptcha/api.js?hl=ru', function () {
+            console.log('Recaptcha loaded');
+        });</script>
         <form method="post" action="{% url 'RExamAccounts:Profile' %}">
+            {% csrf_token %}
             <div class="row">
-                <div class="col-6">
+                <div class="col-md-6 col-12">
                     <div class="header">Профиль пользователя:</div>
                     <div class="form-group">
                         <div class="input-group">
@@ -40,7 +34,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-6">
+                <div class="col-md-6 col-12">
                     <div class="header">Личные данные:</div>
                     <div class="form-group">
                         <div class="input-group">
@@ -94,11 +88,20 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            {{ form.captcha }}
+                            {% if form.captcha.errors %}
+                                <div class="alert alert-danger">
+                                    Капча не пройдена!
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
-
+            {{ error | safe }} {{ success | safe }}
             <button type="submit" class="btn btn-info">Сохранить</button>
         </form>
-        {{ error | safe }} {{ success | safe }}
     </div>
-{% endblock body %}
+
