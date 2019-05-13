@@ -11,7 +11,7 @@ class NewsView(View):
     def get(self, request):
         if request.is_ajax():
             news_list = RExamNewsModel.objects.all().order_by('-id')
-            paginator = Paginator(news_list, 6)
+            paginator = Paginator(news_list, 4)
 
             page = request.GET.get('page')
             try:

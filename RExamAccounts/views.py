@@ -11,14 +11,14 @@ from RExamAccounts.models import StudyGroup
 class SignUp(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('MainPage')
+            return redirect('MainContent')
         study_groups = StudyGroup.objects.all()
         form = SignUpForm
         return render(request, 'RExamAccounts/SignUpView.html', context={'groups': study_groups, 'form': form})
 
     def post(self, request):
         if request.user.is_authenticated:
-            return redirect('MainPage')
+            return redirect('MainContent')
         bounded_form = SignUpForm(request.POST)
         if bounded_form.is_valid():
             new_user = bounded_form.save()
@@ -30,7 +30,7 @@ class SignUp(View):
 class SignIn(View):
     def get(self, request):
         if request.user.is_authenticated:
-            return redirect('MainPage')
+            return redirect('MainContent')
         form = SignInForm
         return render(request, 'RExamAccounts/SignInView.html', context={'form': form})
 
@@ -42,7 +42,7 @@ class SignIn(View):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('MainPage')
+                return redirect('MainContent')
             else:
                 error = 'Введен не правильный логин или пароль!'
                 return render(request, 'RExamAccounts/SignInView.html', context={'form': bound_form, 'error': error})

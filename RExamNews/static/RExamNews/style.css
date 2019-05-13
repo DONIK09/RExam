@@ -35,7 +35,9 @@
 .new-block {
     margin-bottom: 1em;
 }
-
+.paginator{
+    padding: .5rem 1rem;
+}
 .pagination {
     margin: 0;
     box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);

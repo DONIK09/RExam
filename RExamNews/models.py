@@ -4,7 +4,7 @@ from django.db import models
 
 class TypeNews(models.Model):
     name = models.CharField(max_length=30, verbose_name=u'Тип новости')
-    icon = models.CharField(max_length=30, verbose_name=u'Иконка', null=True, blank=True)
+    icon = models.CharField(max_length=60, verbose_name=u'Иконка', null=True, blank=True)
 
     def __str__(self):
         return self.name

@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
-from django.forms import TextInput
+from django.forms import TextInput, Select, EmailInput
 from fontawesome_5 import Icon
 from snowpenguin.django.recaptcha2.fields import ReCaptchaField
 from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
@@ -53,16 +53,24 @@ class SignInForm(forms.Form):
 
 
 class ProfileEdit(UserChangeForm):
+    password = None
+
     class Meta:
         model = UserProfile
-        fields = ('first_name', 'last_name', 'middle_name')
+        fields = ('email', 'first_name', 'last_name', 'middle_name', 'study_group', 'username')
         widgets = {
             'first_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Имя'}),
             'last_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Фамилия'}),
             'middle_name': TextInput(attrs={'class': 'form-control', 'placeholder': 'Отчество'}),
+            'study_group': Select(attrs={'class': 'form-control', 'placeholder': 'Группа'}),
+            'email': EmailInput(attrs={'class': 'form-control', 'placeholder': 'E-Mail'}),
+            'username': TextInput(attrs={'class': 'form-control', 'readonly': 'readonly'})
         }
         labels = {
             'first_name': Icon('address-card', 'far').as_html(),
             'last_name': Icon('address-card', 'far').as_html(),
             'middle_name': Icon('address-card', 'far').as_html(),
+            'study_group': Icon('users', 'fas').as_html(),
+            'email': Icon('envelope', 'far').as_html(),
+            'username': Icon('user', 'far').as_html(),
         }
